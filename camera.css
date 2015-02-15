@@ -1,0 +1,49 @@
+    /*	Author: 	Eleanor Durrant
+		Version: 	1.0 
+		Date:		15th February 2015	*/
+	body{
+      background-color:#1F2047;
+      color:#ffEEEE;
+      padding-right: 5%;
+      padding-left: 5%;
+      font-family: 'Century Gothic', Verdana, sans-serif;
+    }
+    .layoutp{
+      float:left;
+      padding:0em 1em 1em 1em;
+    }
+    .graphic{
+      fill:white;
+      stroke:black;
+      stroke-width:0.1mm;
+    }
+    .control{
+      fill:#ddd;
+      stroke:#aaa;
+      stroke-width:0.4mm;
+    }
+    .visInactive{
+      fill:transparent;
+      stroke:black;
+      stroke-width:0.1mm;
+    }
+    .visLine{
+      stroke:black;
+      stroke-width:0.4mm;
+    }
+    .controlText,
+    .captionText,
+    .apText{
+      font-family: Georgia, Serif;
+      text-align: center;
+    }
+    .controlText{
+      font-size: 0.7em;
+    }
+    .captionText{
+      font-size: 0.7em;
+    }
+    .apText{
+      font-size: 1em;
+      font-style: italic;
+    }
