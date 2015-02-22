@@ -1,11 +1,10 @@
 /*	Author: 	Eleanor Durrant
-	Version: 	1.0 
+	Version: 	1.1
 	Date:		15th February 2015
 	Files:		index.html, camera.css, camera.js
 	This script visualises the workings of a camera. It is intended to help the photography student get their head around the relationship between aperture and shutter settings, and the meaning of the seemingly arbitrary "f-stop" designations.
 	The buttons and their text are in the Scalable Vector Graphic, and calls this script. In this version, the text is in the SVG rather than being written from the values in the array, even though it duplicates those values. It must be updated there seperately.
 	In this version, the camera is in manual mode, and only has this mode. An initial test version had a combined aperture-priority and shutter-priority mode, keeping exposure value constant, but this is less useful for learning. A better implementation of that, with a mode switcher, is now reserved for a future version.
-	Colours and the general appearance can best be configured in the CSS which is in the head of the accompanying HTML file.
 	*/
 var camera = {
 	ISO: "400",
@@ -89,35 +88,21 @@ var camera = {
 		document.getElementById("fstoptext").innerHTML = this.fStop;
 		document.getElementById("aparea").innerHTML = Math.round(Math.PI*radius*radius);
 		
-		var apertureButtons = document.getElementsByClassName("apSetting");
-		for	(di = 0; di < apertureButtons.length; di++) {
-			apertureButtons[di].style.fill = "#ddd";
-		} 
-		apertureButtons[fStopIndex].style.fill = "yellow";
-		
-		var shutterButtons = document.getElementsByClassName("shSetting");
-		for	(di = 0; di < shutterButtons.length; di++) {
-			shutterButtons[di].style.fill = "#ddd";
-		} 
-		shutterButtons[shutterIndex].style.fill = "yellow";
-		
-		var isoButtons = document.getElementsByClassName("isoSetting");
-		var isoIndex = this.ISOs.indexOf(this.ISO);
-		for (di = 0; di < isoButtons.length; di++){
-			isoButtons[di].style.fill = "#ddd";
+		fHighlight = function(arrayClassName, indexToHighlight, lowColour, highColour){
+			thingArray = document.getElementsByClassName(arrayClassName);
+			var i;
+			for (i=0; i < thingArray.length; i++){
+					if (i == indexToHighlight){
+						thingArray[i].style.fill = highColour;
+					}else{
+						thingArray[i].style.fill = lowColour;
+					}
+			}
 		}
-		isoButtons[isoIndex].style.fill = "yellow";
-		
-		var apAreaVis = document.getElementsByClassName("areaVis");
-		for (di = 0; di < apAreaVis.length; di++){
-			apAreaVis[di].style.fill = "transparent";
-		}
-		apAreaVis[fStopIndex].style.fill = "yellow";
-		
-		var timeVis = document.getElementsByClassName("timeVis");
-		for (di = 0; di < timeVis.length; di++){
-			timeVis[di].style.fill = "transparent";
-		}
-		timeVis[shutterIndex].style.fill = "yellow";
+		fHighlight("apSetting",fStopIndex,"#ddd","yellow");
+		fHighlight("shSetting",shutterIndex,"#ddd","yellow");
+		fHighlight("isoSetting",this.ISOs.indexOf(this.ISO),"#ddd","yellow");
+		fHighlight("areaVis",fStopIndex,"transparent","yellow");
+		fHighlight("timeVis",shutterIndex,"transparent","yellow");
 	}
 };
