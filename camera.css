@@ -1,13 +1,16 @@
     /*	Author: 	Eleanor Durrant
-		Version: 	1.0 
-		Date:		15th February 2015	*/
-	body{
-      background-color:#1F2047;
-      color:#ffEEEE;
-      padding-right: 5%;
-      padding-left: 5%;
-      font-family: 'Century Gothic', Verdana, sans-serif;
-    }
+				Version: 	2.0	*/
+		body{
+				background-color:#1F2047;
+				color:#ffEEEE;
+				padding-right: 5%;
+				padding-left: 5%;
+				font-family: 'Century Gothic', Verdana, sans-serif;
+		}
+		h1{
+			font-size: 1.7em;
+			font-weight: normal;
+		}
     .layoutp{
       float:left;
       padding:0em 1em 1em 1em;
@@ -22,14 +25,24 @@
       stroke:#aaa;
       stroke-width:0.4mm;
     }
-    .visInactive{
-      fill:transparent;
-      stroke:black;
-      stroke-width:0.1mm;
-    }
-    .visLine{
-      stroke:black;
-      stroke-width:0.4mm;
+		.controlActive{
+		fill:yellow;
+		stroke:#aaa;
+		stroke-width:0.4mm;
+		}
+		.visInactive{
+			fill:transparent;
+			stroke:black;
+			stroke-width:0.1mm;
+		}
+		.visActive{
+			fill:yellow;
+			stroke:black;
+			stroke-width:0.1mm;
+		}
+			.visLine{
+				stroke:black;
+				stroke-width:0.4mm;
     }
     .controlText,
     .captionText,
