@@ -6,11 +6,32 @@
   <meta name="keywords" content="Aperture, f-Stop, exposure, shutter, ISO, focal length, camera, SVG, visualisation, animation, graphic">
   <meta name="author" content="Eleanor Durrant">
   <script src="camera.js"></script>
+  <script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+   
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+   
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
   <link rel="stylesheet" href="camera.css">
-  <title>f-Stop, Shutter and ISO Visualiser</title>
+  <title>f-Stop, Shutter and ISO visualised</title>
 </head>
 
 <body onload="camera.set();">
+
+<h1>Camera Visualiser</h1>
+<p>Puzzled by the relationship between f-Stop, ISO and shutter speed? This visualises it for you. Touch or click the controls to see how much light gets in.
+
 <div class="layoutp">
 <svg width="700" height="430">
   <rect class="graphic" width="700" height="430" />
@@ -94,13 +115,12 @@
     <rect transform="translate(-2,-2)" class="greyout" id="shOverlay" width="64" height="324"/>
   </g>
   
-  <g id="apValueRelation" transform="translate(240,330)">
-    <line id="diameterVis" class="visLine" x1="0" y1="0" x2="50mm" y2="0" style="stroke-dasharray:8.5mm,0.5mm;" />
-    <line id="focalLengthVis" class="visLine" x1="0" y1="10" x2="50mm" y2="10" />
-    <text x="0" y="30" class="captionText">Focal length <tspan id="focaltext"> </tspan> &divide; aperture diameter <tspan id="diametertext"> </tspan> &asymp; <tspan class="apText">f </tspan><tspan id="fstoptext"> </tspan></text>
-    <text x="0" y="45" class="captionText">Aperture area &asymp; <tspan id="aparea"></tspan> mm&sup2;</text>
-    <text x="0" y="60" class="captionText">Time &asymp; <tspan id="timevalue"></tspan>th of a second</text>
-    <text x="0" y="75" class="captionText">Exposure: <tspan id="photons"></tspan>.</text>
+  <g id="apValueRelation" transform="translate(210,340)">
+    <text x="0" y="5" class="captionText">Focal length <tspan id="focaltext"> </tspan> &divide; aperture diameter <tspan id="diametertext"> </tspan> &asymp; <tspan class="apText">f </tspan><tspan id="fstoptext"> </tspan></text>
+    <line id="diameterVis" class="visLine" x1="0" y1="15" x2="50mm" y2="15" style="stroke-dasharray:8.5mm,0.5mm;" />
+    <line id="focalLengthVis" class="visLine" x1="0" y1="25" x2="50mm" y2="25" />
+    <text x="0" y="45" class="captionText">Time: <tspan id="timevalue"></tspan>th of a second. Aperture area: <tspan id="aparea"></tspan> mm&sup2;</text>
+    <text x="0" y="65" class="captionText">Exposure: <tspan id="photons"></tspan>.</text>
   </g>
 
   <g id="areaVisualisation" transform="translate(630,90)">
@@ -177,11 +197,12 @@
   
 </svg>
 </div>
-<h1>Camera Visualiser</h1>
 
-<p>This scalable vector graphic visualises the behaviour of a camera and the meaning of f-stop.
-<p>Version 2.0 with aperture-priority and shutter-priority modes.
-<p>&copy; Eleanor Durrant 2015
+<p>Version 2.1 with aperture-priority and shutter-priority modes. &copy; Eleanor Durrant 2015. You are very welcome to use it to teach yourself or teach a class. I'd love to know. Other rights reserved. 
+
+<p>Please share! <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=f-Stop, Shutter%20and%20ISO%20visualised&url=http://www.subjectline.co.uk/camera&via=spikylellie">
+Tweet</a> 
+<p>Want some clarity for your company, concept, software or process? Contact me: hello at subjectline co uk, twitter @spikylellie.
 
 <p><span id="debuginfo"></span>
 </body>
