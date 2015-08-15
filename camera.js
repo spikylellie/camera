@@ -1,9 +1,10 @@
 /*	Author: 	Eleanor Durrant
-	Version: 	2.0
+	Version: 	2.1
 	Files:		index.html, camera.css, camera.js
-	This script visualises the workings of a camera. It is intended to help the photography student get their head around the relationship between aperture and shutter settings, and the meaning of the seemingly arbitrary "f-stop" designations.
-	The buttons and their text are in the Scalable Vector Graphic. In this version, the text is in the SVG rather than being written from the values in the array, even though it duplicates those values. It must be updated there separately.
-	Added in this version: aperture-priority and shutter-priority modes, better flow control, use CSS classes for highlighting. */
+	This script works with an SVG diagram to visualise the workings of a camera. It is intended to help the photography student get their head around the relationship between aperture and shutter settings, and the meaning of the seemingly arbitrary "f-stop" numbers.
+	The buttons and their text are in the Scalable Vector Graphic. The values have been selected as possibly relatable to an existing camera in some imaginary light conditions. They are displayed on the buttons and specified at the top of this script. They would have to be changed in both; but their presence in the SVG itself makes the SVG much easier to understand.
+	Version 2.0: Added aperture-priority and shutter-priority modes, better flow control, use CSS classes for highlighting. 
+	Version 2.1: Greyed out controls as necessary according to Mode. Clarified use of colour. Better text style and labels. Made whole thing bigger and rearranged controls. */
 var camera = {
 	ISO: "400",
 	ISOs: ["200","400","800"],
@@ -89,19 +90,39 @@ var camera = {
 		fHighlight("timeVis",this.shutterIndex,"visActive","visInactive");
 		fHighlight("modeSetting",this.modes.indexOf(this.mode),"controlActive","control");
 		
+		//  If Mode disables a set of controls, grey them out by masking with an overlay
+		var apControlOverlay = document.getElementById("apOverlay");
+		var shControlOverlay = document.getElementById("shOverlay");
+		switch (this.mode){
+			case "A":
+			apControlOverlay.setAttribute("style","display:none;");
+			shControlOverlay.setAttribute("style","display:block;");
+			break;
+			case "S":
+			apControlOverlay.setAttribute("style","display:block;");
+			shControlOverlay.setAttribute("style","display:none;");
+			break;
+			default:
+			apControlOverlay.setAttribute("style","display:none;");
+			shControlOverlay.setAttribute("style","display:none;");
+		}
+		
 		//  Calculate the exposure value and display under- or over-exposure
 		var exposureValue = (this.fStops.length-1-this.fStopIndex) - this.shutterIndex + this.isoOffset;
 		var exposureVis = document.getElementById("exposureVis");
 		if(exposureValue < 0){
 			exposureVis.style.fill="black";
 			exposureVis.style.opacity=((0-exposureValue)+4)/10; 
+			document.getElementById("photons").innerHTML = "Underexposed"
 		}
 		if(exposureValue == 0){
 			exposureVis.style.fill="transparent";
+			document.getElementById("photons").innerHTML = "Good exposure"
 		}
 		if(exposureValue > 0){
 			exposureVis.style.fill="white";
 			exposureVis.style.opacity=((exposureValue+4)/10);
+			document.getElementById("photons").innerHTML = "Overexposed"
 		}
 		
 		// calculate the radius of the aperture circle and display the aperture visualisations
@@ -115,6 +136,7 @@ var camera = {
 		document.getElementById("diametertext").innerHTML = Math.round(diameter) + " mm";
 		document.getElementById("fstoptext").innerHTML = this.fStop;
 		document.getElementById("aparea").innerHTML = Math.round(Math.PI*radius*radius);
+		document.getElementById("timevalue").innerHTML = this.shutter;
 	},
 	set: function(action, value){	
 		switch (action){

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Interactive visualisation of the relationship between f-Stop, Shutter, ISO and focal length, in SVG and Javascript.">
+  <meta name="description" content="Interactive visualisation of the relationship between f-Stop, Shutter, ISO and focal length, in SVG and Javascript. Version 2.1">
   <meta name="keywords" content="Aperture, f-Stop, exposure, shutter, ISO, focal length, camera, SVG, visualisation, animation, graphic">
   <meta name="author" content="Eleanor Durrant">
   <script src="camera.js"></script>
@@ -12,9 +12,9 @@
 
 <body onload="camera.set();">
 <div class="layoutp">
-<svg width="500" height="430">
-  <rect class="graphic" width="500" height="430" />
-  <g id="gAperture" transform="translate(240,150)">
+<svg width="700" height="430">
+  <rect class="graphic" width="700" height="430" />
+  <g id="gAperture" transform="translate(340,150)">
     <circle id="aperture" cx="10" cy="11" r="4.5mm" stroke="black" stroke-width="1" fill="yellow"/>
     <circle cx="10" cy="11" r="1.6mm" class="visInactive"/>
     <circle cx="10" cy="11" r="2.3mm" class="visInactive"/>
@@ -25,7 +25,7 @@
     <circle cx="10" cy="11" r="12.5mm" class="visInactive"/>
   </g>
   
-  <g id="gISOControl" transform="translate(165,20)">
+  <g id="gISOControl" transform="translate(265,265)">
     <g onClick="camera.set('iso','200');">
       <rect class="isoSetting control" width="45" height="45" rx="4" ry="4" />
       <text class="controlText"><tspan x="15" y="20">ISO</tspan><tspan x="14" y="35">200</tspan></text>
@@ -40,44 +40,24 @@
     </g>
   </g>
   
-  <g id="gApertureControl" transform="translate(430,40)">
-    <polygon class="control" points="30,0 60,50 0,50" onclick="camera.set('fStopOpen');"/>
-    <g transform="translate(0,60)" onclick="camera.set('fStop',2);">
-      <rect class="apSetting control" class="control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 2</text>
+  <g id="timeVisualisation" transform="translate(70,290)">
+    <g transform="rotate(180)">
+    <rect class="timeVis visInactive" width="20" height="200" />
+    <rect class="timeVis visInactive" width="20" height="100" />
+    <rect class="timeVis visInactive" width="20" height="50" />
+    <rect class="timeVis visInactive" width="20" height="25" />
+    <rect class="timeVis visInactive" width="20" height="12.5" />
+    <rect class="timeVis visInactive" width="20" height="6.25" />
+    <rect class="timeVis visInactive" width="20" height="3.1" />
     </g>
-    <g transform="translate(0,90)" onclick="camera.set('fStop',2.8);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15"  class="controlText"><tspan class="apText">f</tspan> 2.8</text>
-    </g>
-    <g transform="translate(0,120)" onclick="camera.set('fStop',4);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 4</text>
-    </g>
-    <g transform="translate(0,150)" onclick="camera.set('fStop',5.6);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 5.6</text>
-    </g>
-    <g transform="translate(0,180)" onclick="camera.set('fStop',8);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 8</text>
-    </g>
-    <g transform="translate(0,210)" onclick="camera.set('fStop',11);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 11</text>
-    </g>
-    <g transform="translate(0,240)" onclick="camera.set('fStop',16);">
-      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
-      <text x="20" y="15"  class="controlText"><tspan class="apText">f</tspan> 16</text>
-    </g>
-    <polygon points="30,320 60,270 0,270" class="control" onclick="camera.set('fStopClose');" />
-  </g>
+    <text class="captionText" x="-22" y="20">Time</text>
+  </g>  
   
   
-  
-  <g id="gShutterControl" transform="translate(10,40)">
-    <g transform="translate(0,0)">
-      <polygon class="control" points="30,0 60,50 0,50" onclick="camera.set('shutterOpen');"/>
+  <g id="gShutterControl" transform="translate(120,40)">
+    <g transform="translate(0,0)" onclick="camera.set('shutterOpen');">
+      <polygon class="control" points="30,0 60,50 0,50"/>
+      <text x="15" y="42" class="controlText">More</text>
     </g>
     <g transform="translate(0,60)" onclick="camera.set('shutter','1/15');">
       <rect class="shSetting control" width="60" height="20" rx="4" ry="4"/>
@@ -107,35 +87,23 @@
       <rect class="shSetting control" width="60" height="20" rx="4" ry="4"/>
       <text x="15" y="15"  class="controlText">1/1000</text>
     </g>
-    <polygon class="control" points="60,270 30,320 0,270" onclick="camera.set('shutterClose');" />
+    <g transform="translate(0,270)" onclick="camera.set('shutterClose');">
+      <polygon points="30,50 60,0 0,0" class="control" />
+      <text x="20" y="20"  class="controlText">Less</text>
+    </g>
+    <rect transform="translate(-2,-2)" class="greyout" id="shOverlay" width="64" height="324"/>
   </g>
   
-  <g id="apValueText" transform="translate(160,240)">
-    <text x="0" y="0" class="captionText">Aperture area &asymp;<tspan id="aparea"> </tspan> mm&sup2;</text>
-  </g>
-  
-  <g id="apValueRelation" transform="translate(160,260)">
+  <g id="apValueRelation" transform="translate(240,330)">
     <line id="diameterVis" class="visLine" x1="0" y1="0" x2="50mm" y2="0" style="stroke-dasharray:8.5mm,0.5mm;" />
     <line id="focalLengthVis" class="visLine" x1="0" y1="10" x2="50mm" y2="10" />
-    <text x="0" y="30" class="captionText">focal length <tspan id="focaltext"> </tspan></text>
-    <text x="0" y="50" class="captionText">&divide; aperture diameter <tspan id="diametertext"> </tspan></text>
-    <text x="0" y="70" class="captionText">&asymp; <tspan class="apText">f </tspan><tspan id="fstoptext"> </tspan></text>
+    <text x="0" y="30" class="captionText">Focal length <tspan id="focaltext"> </tspan> &divide; aperture diameter <tspan id="diametertext"> </tspan> &asymp; <tspan class="apText">f </tspan><tspan id="fstoptext"> </tspan></text>
+    <text x="0" y="45" class="captionText">Aperture area &asymp; <tspan id="aparea"></tspan> mm&sup2;</text>
+    <text x="0" y="60" class="captionText">Time &asymp; <tspan id="timevalue"></tspan>th of a second</text>
+    <text x="0" y="75" class="captionText">Exposure: <tspan id="photons"></tspan>.</text>
   </g>
 
-  <g id="timeVisualisation" transform="translate(110,290)">
-    <g transform="rotate(180)">
-    <rect class="timeVis visInactive" width="20" height="200" />
-    <rect class="timeVis visInactive" width="20" height="100" />
-    <rect class="timeVis visInactive" width="20" height="50" />
-    <rect class="timeVis visInactive" width="20" height="25" />
-    <rect class="timeVis visInactive" width="20" height="12.5" />
-    <rect class="timeVis visInactive" width="20" height="6.25" />
-    <rect class="timeVis visInactive" width="20" height="3.1" />
-    </g>
-    <text class="captionText" x="-22" y="20">Time</text>
-  </g>
-  
-  <g id="areaVisualisation" transform="translate(390,90)">
+  <g id="areaVisualisation" transform="translate(630,90)">
     <rect class="areaVis visInactive" width="20" height="200" />
     <rect class="areaVis visInactive" width="20" height="100" />
     <rect class="areaVis visInactive" width="20" height="50" />
@@ -145,10 +113,50 @@
     <rect class="areaVis visInactive" width="20" height="3.1" />
     <text x="0" y="220" class="captionText">Area</text>
   </g>  
-
-  <rect id="exposureVis" transform="translate(130,90)" width="240" height="260" class="visInactive" style="fill:transparent;"/>
   
-  <g id="gModeControl" transform="translate(110,365)">
+  <g id="gApertureControl" transform="translate(520,40)">
+    <g onclick="camera.set('fStopOpen');">
+      <polygon class="control" points="30,0 60,50 0,50"/>
+      <text x="15" y="42" class="controlText">More</text>
+    </g>
+    <g transform="translate(0,60)" onclick="camera.set('fStop',2);">
+      <rect class="apSetting control" class="control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 2</text>
+    </g>
+    <g transform="translate(0,90)" onclick="camera.set('fStop',2.8);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15"  class="controlText"><tspan class="apText">f</tspan> 2.8</text>
+    </g>
+    <g transform="translate(0,120)" onclick="camera.set('fStop',4);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 4</text>
+    </g>
+    <g transform="translate(0,150)" onclick="camera.set('fStop',5.6);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 5.6</text>
+    </g>
+    <g transform="translate(0,180)" onclick="camera.set('fStop',8);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 8</text>
+    </g>
+    <g transform="translate(0,210)" onclick="camera.set('fStop',11);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15" class="controlText"><tspan class="apText">f</tspan> 11</text>
+    </g>
+    <g transform="translate(0,240)" onclick="camera.set('fStop',16);">
+      <rect class="apSetting control" width="60" height="20" rx="4" ry="4"/>
+      <text x="20" y="15"  class="controlText"><tspan class="apText">f</tspan> 16</text>
+    </g>
+    <g transform="translate(0,270)" onclick="camera.set('fStopClose');">
+      <polygon points="30,50 60,0 0,0" class="control" />
+      <text x="20" y="20"  class="controlText">Less</text>
+    </g>
+    <rect transform="translate(-2,-2)" class="greyout" id="apOverlay" width="64" height="324"/>
+  </g>
+
+  <rect id="exposureVis" transform="translate(230,90)" width="240" height="150" class="visInactive" style="fill:transparent;"/>
+  
+  <g id="gModeControl" transform="translate(210,40)">
     <g onClick="camera.set('mode','S');">
       <rect class="modeSetting control" id="S" width="100" height="20" rx="4" ry="4"/>
       <text x="12" y="14" class="controlText">Shutter Priority</text>
@@ -161,11 +169,12 @@
       <rect class="modeSetting control" id="A" width="100" height="20" rx="4" ry="4"/>
       <text x="8" y="14" class="controlText">Aperture Priority</text>
     </g>
+    <g transform="translate(290,0)" onClick="camera.set();" style="display:none">
+      <rect class="control" id="Reset" width="110" height="20" rx="4" ry="4"/>
+      <text x="10" y="14" class="controlText">Reset everything</text>
+    </g>
   </g>
-  <g transform="translate(220,400)" onClick="camera.set();">
-    <rect class="control" id="Reset" width="60" height="20" rx="4" ry="4"/>
-    <text x="16" y="14" class="controlText">Reset</text>
-  </g>
+  
 </svg>
 </div>
 <h1>Camera Visualiser</h1>

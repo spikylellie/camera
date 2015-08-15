@@ -1,5 +1,5 @@
     /*	Author: 	Eleanor Durrant
-				Version: 	2.0	*/
+				Version: 	2.1	*/
 		body{
 				background-color:#1F2047;
 				color:#ffEEEE;
@@ -21,15 +21,20 @@
       stroke-width:0.1mm;
     }
     .control{
-      fill:#ddd;
+      fill:#bbb;
       stroke:#aaa;
       stroke-width:0.4mm;
     }
 		.controlActive{
-		fill:yellow;
-		stroke:#aaa;
-		stroke-width:0.4mm;
+			fill:#eee;
+			stroke:#bbb;
+			stroke-width:0.4mm;
 		}
+		.greyout{
+			fill:white;
+			opacity:0.5;
+			display:none;
+		}	
 		.visInactive{
 			fill:transparent;
 			stroke:black;
@@ -40,14 +45,14 @@
 			stroke:black;
 			stroke-width:0.1mm;
 		}
-			.visLine{
-				stroke:black;
-				stroke-width:0.4mm;
+		.visLine{
+			stroke:black;
+			stroke-width:0.4mm;
     }
     .controlText,
     .captionText,
     .apText{
-      font-family: Georgia, Serif;
+      font-family: Century Gothic, Verdana, Sans-Serif;
       text-align: center;
     }
     .controlText{
